@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zero Trust Authentication for Smart Labels | Supply Chain Security</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-brand">
+      <div class="shield-icon"></div>
+      <div>
+        <h1>Zero Trust Smart Label Security</h1>
+        <span class="subtitle">Continuous RFID & Supply Chain Verification Engine</span>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <div class="company-quick-switch" id="company-status-badge">
+        <span class="comp-badge-icon"></span>
+        <span class="comp-badge-text"><strong>Central Security</strong> (Super-Admin)</span>
+      </div>
+      <a href="/admin-stats" class="btn btn-outline btn-sm" style="border-color: #a855f7; color: #c084fc;">Super Admin Stats</a>
+      <button class="btn btn-outline btn-sm" id="btn-open-login-modal">Switch Portal</button>
+      <button class="btn btn-primary btn-sm" id="btn-open-register-modal">Register Product</button>
+      <button class="btn btn-outline btn-sm" id="btn-seed-db">Reset</button>
+      <button class="btn btn-outline btn-sm theme-toggle-btn" style="padding: 0.4rem 0.8rem; font-size: 1.1rem; border-color: var(--border-color);" title="Toggle Light/Dark Theme">🌗</button>
+    </div>
+  </header>
+
+  <!-- Active Organization Banner -->
+  <div class="org-banner" id="org-banner-container">
+    <div class="org-banner-content">
+      <div class="org-info-left">
+        <span class="org-tag" id="org-tag-type">GLOBAL HEADQUARTERS</span>
+        <h3 id="org-display-name">Central Supply Chain Security Command</h3>
+        <span class="org-sub" id="org-display-desc">Full Network Authority • Real-time Cross-Facility Monitoring & Incident Response</span>
+      </div>
+      <div class="org-info-right">
+        <span class="org-badge-role" id="org-role-badge">Super-Admin Access</span>
+        <span class="org-assigned-node" id="org-node-text">📍 Scope: All Checkpoints (C01–C04)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Company Quick-Login Modal -->
+  <div class="modal-overlay hidden" id="company-login-modal">
+    <div class="modal-card" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3>Select Stakeholder Company / Organization Portal</h3>
+        <button class="modal-close" id="btn-close-login-modal">&times;</button>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.2rem;">
+        Select a stakeholder organization below to switch into its dedicated portal view with role-based access permissions:
+      </p>
+
+      <div class="quick-login-grid">
+        
+        <!-- Option 1: Super Admin -->
+        <div class="login-role-card active" onclick="switchCompany('admin')">
+          <div class="role-icon"></div>
+          <div class="role-details">
+            <strong>Central Security Control</strong>
+            <span class="role-sub">Super-Admin • Full Visibility (C01–C04)</span>
+          </div>
+          <span class="role-badge badge-admin">Master Access</span>
+        </div>
+
+        <!-- Option 2: Manufacturer -->
+        <div class="login-role-card" onclick="switchCompany('manufacturer')">
+          <div class="role-icon"></div>
+          <div class="role-details">
+            <strong>Apex Semiconductor Inc.</strong>
+            <span class="role-sub">Manufacturer • Factory Floor #1 (Shenzhen)</span>
+          </div>
+          <span class="role-badge badge-mfg">Node C01</span>
+        </div>
+
+        <!-- Option 3: Warehouse -->
+        <div class="login-role-card" onclick="switchCompany('warehouse')">
+          <div class="role-icon"></div>
+          <div class="role-details">
+            <strong>Global Logistics Hub</strong>
+            <span class="role-sub">Central Warehouse • Hub A (Hong Kong)</span>
+          </div>
+          <span class="role-badge badge-warehouse">Node C02</span>
+        </div>
+
+        <!-- Option 4: Distributor -->
+        <div class="login-role-card" onclick="switchCompany('distributor')">
+          <div class="role-icon"></div>
+          <div class="role-details">
+            <strong>TransAsia Distribution Ltd.</strong>
+            <span class="role-sub">Regional Distributor • Center B (Singapore)</span>
+          </div>
+          <span class="role-badge badge-distro">Node C03</span>
+        </div>
+
+        <!-- Option 5: Retailer -->
+        <div class="login-role-card" onclick="switchCompany('retailer')">
+          <div class="role-icon"></div>
+          <div class="role-details">
+            <strong>Tokyo MegaRetail Ltd.</strong>
+            <span class="role-sub">Retail Chain Store • Store #104 (Tokyo)</span>
+          </div>
+          <span class="role-badge badge-retail">Node C04</span>
+        </div>
+
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; margin-top: 1.2rem;">
+        <button type="button" class="btn btn-outline" id="btn-cancel-login">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Registration Modal -->
+  <div class="modal-overlay hidden" id="register-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Register New Smart Label Product</h3>
+        <button class="modal-close" id="btn-close-register-modal">&times;</button>
+      </div>
+      <form id="product-register-form">
+        <div class="form-group">
+          <label for="reg-product-id">Product ID (Unique Identifier):</label>
+          <input type="text" id="reg-product-id" class="form-control" placeholder="e.g. P1006" required>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-product-name">Product Name & Description:</label>
+          <input type="text" id="reg-product-name" class="form-control" placeholder="e.g. Quantum Optical Transceiver" required>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-rfid-uid">Smart Label RFID UID:</label>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="text" id="reg-rfid-uid" class="form-control" placeholder="e.g. A9B8C7D6" required style="text-transform: uppercase;">
+            <button type="button" class="btn btn-outline btn-sm" id="btn-fetch-rfid" title="Scans for the latest unregistered hardware tag">Fetch Hardware Scan</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-manufacturer">Manufacturer Organization:</label>
+          <input type="text" id="reg-manufacturer" class="form-control" placeholder="e.g. Apex Cybernetics Ltd." required>
+        </div>
+
+        <div id="reg-alert-box" class="hidden" style="margin: 0.8rem 0; padding: 0.7rem; border-radius: 8px; font-size: 0.82rem;"></div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.8rem; margin-top: 1.2rem;">
+          <button type="button" class="btn btn-outline" id="btn-cancel-register">Cancel</button>
+          <button type="submit" class="btn btn-primary">Register Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="dashboard-container">
+
+    <!-- KPI Summary Metrics -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-header">Total Tracked Items</div>
+        <div class="metric-value" id="kpi-total-products">0</div>
+        <div class="metric-footer">Active smart labels</div>
+      </div>
+      <div class="metric-card allow">
+        <div class="metric-header">ALLOW (Verified)</div>
+        <div class="metric-value" id="kpi-allow">0</div>
+        <div class="metric-footer">Trust Score &ge; 80</div>
+      </div>
+      <div class="metric-card flag">
+        <div class="metric-header">FLAG (Suspicious)</div>
+        <div class="metric-value" id="kpi-flag">0</div>
+        <div class="metric-footer">Trust Score 50–79</div>
+      </div>
+      <div class="metric-card quarantine">
+        <div class="metric-header">QUARANTINE (Blocked)</div>
+        <div class="metric-value" id="kpi-quarantine">0</div>
+        <div class="metric-footer">Tampered or Score &lt; 50</div>
+      </div>
+      <div class="metric-card alert">
+        <div class="metric-header">Security Alerts</div>
+        <div class="metric-value" id="kpi-alerts">0</div>
+        <div class="metric-footer">Active security incidents</div>
+      </div>
+    </div>
+
+    <!-- Main Content Layout: Left = Simulator & Demos, Right = Live Map & Alerts -->
+    <div class="main-grid">
+
+      <!-- LEFT COLUMN: Virtual Checkpoint Scanner + Attack Test Suite -->
+      <div class="col-left">
+
+        <!-- Virtual Hardware Scanner Panel -->
+        <div class="glass-panel simulator-panel" id="simulator-panel-container">
+          <div class="panel-header">
+            <h2>Checkpoint Hardware Simulator</h2>
+            <span class="badge badge-hardware" id="sim-lock-badge">ESP32 + RC522 Emulation</span>
+          </div>
+
+          <div class="sim-form">
+            <!-- Checkpoint Selector -->
+            <div class="form-group">
+              <label for="sim-checkpoint">
+                Supply Chain Checkpoint:
+                <span id="cp-lock-tag" style="font-size:0.72rem; font-weight:700; color:#fbbf24; margin-left:0.4rem; font-family:'JetBrains Mono', monospace;"></span>
+              </label>
+              <select id="sim-checkpoint" class="form-control">
+                <option value="C01">C01 - Manufacturer Node (Factory Floor #1)</option>
+                <option value="C02">C02 - Central Warehouse (Logistics Hub A)</option>
+                <option value="C03">C03 - Regional Distributor (Distribution Center B)</option>
+                <option value="C04">C04 - Retail Store (Retail Outlet #104)</option>
+              </select>
+            </div>
+
+            <!-- RFID Tag / Product Selector -->
+            <div class="form-group">
+              <label for="sim-rfid">Scan RFID Tag / Select Product:</label>
+              <select id="sim-rfid" class="form-control">
+                <option value="A1B2C3D4">P1001 - Microprocessor Array (RFID: A1B2C3D4)</option>
+                <option value="E5F6G7H8">P1002 - Medical Vaccine Lot #44 (RFID: E5F6G7H8)</option>
+                <option value="99887766">P1003 - Aerospace Avionics Unit (RFID: 99887766)</option>
+                <option value="11223344">P1004 - Luxury Watch Batch #109 (RFID: 11223344)</option>
+                <option value="55667788">P1005 - Encrypted Crypto Hardware (RFID: 55667788)</option>
+                <option value="DEADBEEF99">UNKNOWN_TAG - Unregistered RFID (RFID: DEADBEEF99)</option>
+              </select>
+            </div>
+
+            <!-- Physical Tamper Switch (REMOVED: Handled by physical ESP32 Hardware) -->
+
+            <!-- Employee Authentication & Duress PIN -->
+            <div class="form-row">
+              <div class="form-group half">
+                <label for="sim-employee">
+                  Employee ID:
+                  <span id="emp-lock-tag" style="font-size:0.72rem; font-weight:700; color:#fbbf24; margin-left:0.4rem; font-family:'JetBrains Mono', monospace;"></span>
+                </label>
+                <select id="sim-employee" class="form-control">
+                  <option value="E101">E101 - Alice Smith</option>
+                  <option value="E102">E102 - Bob Jones</option>
+                  <option value="E103">E103 - Charlie Brown</option>
+                  <option value="E104">E104 - Diana Prince</option>
+                </select>
+              </div>
+              <div class="form-group half">
+                <label for="sim-pin">Security PIN:</label>
+                <input type="password" id="sim-pin" class="form-control" value="1234" placeholder="Normal: 1234 | Duress: 9999">
+              </div>
+            </div>
+
+            <!-- Scan Action Button -->
+            <button id="btn-trigger-scan" class="btn btn-primary btn-block">
+              SIMULATE SCAN (SOFTWARE ONLY)
+            </button>
+            <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">
+              * For real scans, use your physical ESP32 hardware via serial_bridge.py
+            </p>
+          </div>
+
+          <!-- Virtual Hardware Feedback Display -->
+          <div class="hardware-output">
+            <div class="hardware-leds">
+              <div class="led-box">
+                <div class="led led-green" id="led-green"></div>
+                <span>ALLOW</span>
+              </div>
+              <div class="led-box">
+                <div class="led led-yellow" id="led-yellow"></div>
+                <span>FLAG</span>
+              </div>
+              <div class="led-box">
+                <div class="led led-red" id="led-red"></div>
+                <span>QUARANTINE</span>
+              </div>
+            </div>
+
+            <div class="score-display">
+              <div class="score-number" id="output-score">--</div>
+              <div class="score-label">Trust Score / 100</div>
+            </div>
+
+            <div class="decision-display">
+              <div class="decision-title" id="output-decision">READY</div>
+              <div class="decision-sub" id="output-details">Waiting for RFID scan payload...</div>
+            </div>
+          </div>
+
+          <!-- Violations Breakdown -->
+          <div class="violations-box hidden" id="violations-container">
+            <h4>Security Engine Deductions & Violations:</h4>
+            <ul id="violations-list"></ul>
+          </div>
+        </div>
+
+        <!-- Attack Scenario Test Suite (Faculty Presentation Demos) -->
+        <div class="glass-panel demo-suite-panel">
+          <div class="panel-header">
+            <h2>Faculty Review Demo Suite</h2>
+            <span class="badge badge-demo">1-Click Attack Generators</span>
+          </div>
+
+          <div class="demo-buttons-grid">
+            <button class="btn btn-demo demo-1" onclick="runDemo(1)">
+              <span class="demo-icon"></span>
+              <span class="demo-title">Demo 1: Genuine Scan</span>
+              <span class="demo-desc">Normal product, intact seal, expected route.</span>
+            </button>
+
+            <button class="btn btn-demo demo-2" onclick="runDemo(2)">
+              <span class="demo-icon"></span>
+              <span class="demo-title">Demo 2: Package Tamper</span>
+              <span class="demo-desc">Physical conductive loop broken.</span>
+            </button>
+
+            <button class="btn btn-demo demo-3" onclick="runDemo(3)">
+              <span class="demo-icon"></span>
+              <span class="demo-title">Demo 3: Route Manipulation</span>
+              <span class="demo-desc">Product skips warehouse to retail directly.</span>
+            </button>
+
+            <button class="btn btn-demo demo-4" onclick="runDemo(4)">
+              <span class="demo-icon"></span>
+              <span class="demo-title">Demo 4: RFID Cloning</span>
+              <span class="demo-desc">Same tag scanned concurrently at 2 nodes.</span>
+            </button>
+
+            <button class="btn btn-demo demo-5" onclick="runDemo(5)">
+              <span class="demo-icon"></span>
+              <span class="demo-title">Demo 5: Suspicious Speed</span>
+              <span class="demo-desc">Impossible rapid travel time (< 5s).</span>
+            </button>
+
+            <button class="btn btn-demo demo-6" onclick="runDemo(6)">
+              <span class="demo-icon"></span>
+              <span class="demo-title">Demo 6: Silent Duress</span>
+              <span class="demo-desc">Employee enters duress PIN '9999'.</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: Supply Chain Map, Alerts & Audit Log -->
+      <div class="col-right">
+
+        <!-- Route Visualization Map -->
+        <div class="glass-panel route-panel">
+          <div class="panel-header">
+            <h2>Product Supply Chain Route Visualizer</h2>
+            <select id="route-product-select" class="form-control-sm">
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+
+          <div class="route-map-container" id="route-map">
+            <!-- Node flow populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Security Incident Alerts Feed -->
+        <div class="glass-panel alerts-panel">
+          <div class="panel-header">
+            <h2>Real-time Security Incident Feed</h2>
+            <span class="badge badge-alert" id="active-alert-badge">0 Alerts</span>
+          </div>
+
+          <div class="alerts-feed" id="alerts-feed-container">
+            <div class="empty-state">No security alerts logged yet.</div>
+          </div>
+        </div>
+
+        <!-- Audit Scans Log Table -->
+        <div class="glass-panel logs-panel">
+          <div class="panel-header">
+            <h2>Verification Audit Log</h2>
+            <button class="btn btn-sm btn-outline" id="btn-refresh-logs">Refresh Logs</button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="audit-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Product</th>
+                  <th>Checkpoint</th>
+                  <th>Tamper</th>
+                  <th>Score</th>
+                  <th>Decision</th>
+                </tr>
+              </thead>
+              <tbody id="audit-table-body">
+                <tr>
+                  <td colspan="6" class="text-center">Loading scan logs...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
