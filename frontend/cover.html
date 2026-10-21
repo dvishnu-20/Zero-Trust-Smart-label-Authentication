@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zero Trust Authentication for Smart Labels in Secure Supply Chains | Executive Cover Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .cover-container {
+      max-width: 1240px;
+      margin: 2rem auto;
+      padding: 0 1.5rem 4rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .hero-banner {
+      background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.25), transparent 60%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.35));
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      border-radius: 24px;
+      padding: 3.5rem 2.5rem;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      color: #93c5fd;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+      border-radius: 999px;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-size: 2.9rem;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #ffffff 30%, #93c5fd 80%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: #94a3b8;
+      max-width: 900px;
+      margin: 0 auto 1.8rem auto;
+      line-height: 1.6;
+    }
+
+    .hero-principle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      padding: 0.85rem 1.8rem;
+      border-radius: 14px;
+      color: #fbbf24;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15);
+    }
+
+    /* Section Headers */
+    .section-title-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.6rem;
+    }
+
+    .section-title-box h2 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    /* Hardware Architecture & Sample Working Visualizer */
+    .hardware-archi-container {
+      background: linear-gradient(145deg, rgba(18, 24, 40, 0.95), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .archi-mode-switcher {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.8);
+      padding: 0.8rem 1.2rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .archi-switcher-buttons {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .btn-archi-mode {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-archi-mode.active-normal {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: var(--color-allow);
+      color: var(--color-allow);
+      font-weight: 700;
+    }
+
+    .btn-archi-mode.active-tamper {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: var(--color-quarantine);
+      color: var(--color-quarantine);
+      font-weight: 700;
+    }
+
+    /* 3-Stage Hardware Flow Visualizer */
+    .hardware-flow-grid {
+      display: grid;
+      grid-template-columns: 1fr 60px 1.2fr 60px 1fr;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 1000px) {
+      .hardware-flow-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .flow-arrow-box {
+        transform: rotate(90deg);
+        margin: 0.5rem 0;
+      }
+    }
+
+    .flow-card {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      position: relative;
+    }
+
+    .flow-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .flow-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .flow-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .flow-diagram-visual {
+      background: rgba(10, 14, 26, 0.8);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 1rem;
+      font-size: 0.82rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .flow-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .flow-item-label {
+      color: var(--text-secondary);
+    }
+
+    .flow-item-value {
+      font-weight: 700;
+    }
+
+    .flow-arrow-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: var(--accent-blue);
+    }
+
+    /* Clean Comparison Table */
+    .compare-container {
+      background: rgba(18, 24, 40, 0.85);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .compare-table th {
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-secondary);
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .compare-table td:first-child {
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .pill-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .pill-tag.vulnerable {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #f87171;
+    }
+
+    .pill-tag.partial {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fbbf24;
+    }
+
+    .pill-tag.secured {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+    }
+
+    /* Interactive Trust Score Simulator Card */
+    .interactive-calculator-card {
+      background: linear-gradient(145deg, rgba(18, 24, 40, 0.95), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (max-width: 960px) {
+      .interactive-calculator-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .calc-controls-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .calc-toggle-item {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 0.9rem 1.1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .calc-toggle-item:hover {
+      border-color: rgba(59, 130, 246, 0.5);
+      background: rgba(30, 41, 59, 0.7);
+    }
+
+    .calc-toggle-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .calc-toggle-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .calc-toggle-weight {
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .calc-score-display {
+      background: rgba(10, 14, 26, 0.95);
+      border: 2px solid rgba(59, 130, 246, 0.3);
+      border-radius: 16px;
+      padding: 1.8rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .live-gauge-number {
+      font-size: 3.8rem;
+      font-weight: 900;
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1;
+      transition: color 0.3s ease;
+    }
+
+    .live-decision-badge {
+      font-size: 1.1rem;
+      font-weight: 800;
+      padding: 0.4rem 1.4rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.05em;
+    }
+
+    /* Interactive Node Map */
+    .nodes-interactive-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 860px) {
+      .nodes-interactive-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .node-interactive-card {
+      background: rgba(18, 24, 40, 0.85);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .node-interactive-card:hover,
+    .node-interactive-card.selected {
+      border-color: var(--accent-blue);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+    }
+
+    .node-stage-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .node-stage-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* Dedicated Interactive Feature Cards with Animations */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .feature-card-interactive {
+      background: linear-gradient(145deg, rgba(22, 30, 50, 0.85), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .feature-card-interactive::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--card-accent, var(--accent-blue));
+      transition: height 0.3s ease;
+    }
+
+    .feature-card-interactive:hover {
+      transform: translateY(-8px);
+      border-color: var(--card-accent, rgba(59, 130, 246, 0.5));
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px var(--card-glow, rgba(59, 130, 246, 0.25));
+    }
+
+    .feature-card-interactive:hover::before {
+      height: 6px;
+    }
+
+    .feature-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .feature-icon-box {
+      font-size: 2rem;
+      width: 54px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      flex-shrink: 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card-interactive:hover .feature-icon-box {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 0 15px var(--card-glow, rgba(59, 130, 246, 0.3));
+    }
+
+    .feature-card-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+    }
+
+    .feature-card-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .feature-pill-bar {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: 0.8rem;
+    }
+
+    /* Light Theme Overrides for Cover Page */
+    body.light-theme .hero-banner {
+      background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.15), transparent 60%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(241, 245, 249, 0.95));
+      border-color: rgba(59, 130, 246, 0.2);
+    }
+    body.light-theme .hero-title {
+      background: linear-gradient(135deg, #0f172a 30%, #2563eb 80%, #0369a1 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    body.light-theme .hero-subtitle { color: #475569; }
+    body.light-theme .hero-principle {
+      background: rgba(241, 245, 249, 0.9);
+      color: #d97706;
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+    body.light-theme .hardware-archi-container {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95));
+      border-color: rgba(59, 130, 246, 0.2);
+    }
+    body.light-theme .flow-diagram-visual {
+      background: rgba(241, 245, 249, 0.8);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+    body.light-theme .flow-item-row {
+      border-bottom-color: rgba(0, 0, 0, 0.05);
+    }
+    body.light-theme .compare-container {
+      background: rgba(255, 255, 255, 0.95);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+    body.light-theme .compare-table th {
+      background: rgba(241, 245, 249, 0.9);
+      color: #475569;
+    }
+    body.light-theme .pill-tag.vulnerable { color: #dc2626; border-color: rgba(220, 38, 38, 0.3); }
+    body.light-theme .pill-tag.partial { color: #d97706; border-color: rgba(217, 119, 6, 0.3); }
+    body.light-theme .pill-tag.secured { color: #059669; border-color: rgba(5, 150, 105, 0.3); }
+    body.light-theme .interactive-calculator-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95));
+      border-color: rgba(59, 130, 246, 0.2);
+    }
+    body.light-theme .calc-toggle-item {
+      background: rgba(241, 245, 249, 0.8);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+    body.light-theme .calc-toggle-item:hover {
+      background: rgba(226, 232, 240, 0.9);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+    body.light-theme .calc-score-display {
+      background: rgba(248, 250, 252, 0.95);
+    }
+    body.light-theme .node-interactive-card {
+      background: rgba(255, 255, 255, 0.8);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+    body.light-theme .feature-card-interactive {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95));
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+    body.light-theme .feature-icon-box {
+      background: rgba(241, 245, 249, 0.8);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+    body.light-theme .feature-pill-bar {
+      border-top-color: rgba(0, 0, 0, 0.05);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Navbar -->
+  <header class="navbar">
+    <div class="nav-brand">
+      <div class="shield-icon">🛡️</div>
+      <div>
+        <h1>Zero Trust Smart Label Security</h1>
+        <span class="subtitle">Interactive Executive Cover Page & Cyber-Physical Architecture</span>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <a href="/admin-stats" class="btn btn-outline" style="font-weight: 700; border-color: #a855f7; color: #c084fc;">
+        Super Admin Stats
+      </a>
+      <button class="btn btn-outline theme-toggle-btn" style="padding: 0.4rem 0.8rem; font-size: 1.1rem; border-color: var(--border-color);" title="Toggle Light/Dark Theme">🌗</button>
+      <a href="/dashboard" class="btn btn-primary"
+        style="font-weight: 700; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5);">
+        Enter Security Console &rarr;
+      </a>
+    </div>
+  </header>
+
+  <div class="cover-container">
+
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+      <div class="hero-tag">Cyber-Physical Supply Chain Security Prototype</div>
+      <h1 class="hero-title">Zero Trust Authentication for Smart Labels in Secure Supply Chains</h1>
+      <p class="hero-subtitle">
+        A continuous multi-factor verification architecture combining RFID digital identity, physical conductive tamper
+        detection, sequential route checking, travel speed validation, duplicate usage detection, and silent duress
+        emergency handling.
+      </p>
+
+      <div class="hero-principle" style="margin-bottom: 2rem;">
+        <span></span>
+        <span><strong>Core Principle:</strong> "A valid RFID tag alone does not mean the product is trusted. Verify
+          continuously at every checkpoint."</span>
+      </div>
+
+      <div>
+        <a href="/dashboard" class="btn btn-primary"
+          style="font-size: 1.1rem; padding: 0.9rem 2.2rem; border-radius: 12px; font-weight: 800; background: linear-gradient(135deg, #2563eb, #06b6d4); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);">
+          LAUNCH MAIN DASHBOARD & SCANNER CONSOLE &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- 1. Sample Hardware Working & Cyber-Physical Architecture Visualizer -->
+    <div>
+      <div class="section-title-box">
+        <div>
+          <h2>Sample Hardware Working & Cyber-Physical Architecture</h2>
+          <span class="section-subtitle">Live interactive visual signal flow from Physical Package Seal to ESP32
+            Hardware and Backend Zero-Trust Decision</span>
+        </div>
+      </div>
+
+      <div class="hardware-archi-container">
+        <div class="archi-mode-switcher">
+          <div>
+            <strong style="color: var(--text-primary); font-size: 0.95rem;">Interactive Hardware Working
+              Demonstration:</strong>
+            <span style="color: var(--text-muted); font-size: 0.82rem; margin-left: 0.5rem;">Select state to observe
+              signal path & hardware feedback</span>
+          </div>
+          <div class="archi-switcher-buttons">
+            <button class="btn-archi-mode active-normal" id="btn-mode-normal" onclick="setArchiMode('normal')">
+              Normal Sealed Product Flow
+            </button>
+            <button class="btn-archi-mode" id="btn-mode-tamper" onclick="setArchiMode('tampered')">
+              Tampered Seal (Wire Cut) Flow
+            </button>
+          </div>
+        </div>
+
+        <!-- 3-Stage Flow Diagram -->
+        <div class="hardware-flow-grid">
+
+          <!-- Stage 1: Smart Label Product -->
+          <div class="flow-card">
+            <div class="flow-card-header">
+              <span class="flow-badge" style="background: rgba(59, 130, 246, 0.2); color: var(--accent-blue);">STAGE
+                1</span>
+              <span class="flow-title">Physical Product</span>
+            </div>
+            <div class="flow-diagram-visual" id="vis-stage-1">
+              <div class="flow-item-row">
+                <span class="flow-item-label">Product Box:</span>
+                <span class="flow-item-value" style="color: var(--accent-blue);">P1001 Microprocessor</span>
+              </div>
+              <div class="flow-item-row">
+                <span class="flow-item-label">Smart RFID Tag:</span>
+                <span class="flow-item-value">UID: A1B2C3D4</span>
+              </div>
+              <div class="flow-item-row">
+                <span class="flow-item-label">Package Seal:</span>
+                <span class="flow-item-value" id="vis-seal-val" style="color: var(--color-allow);">Closed Wire Loop
+                  (Intact)</span>
+              </div>
+              <div class="flow-item-row">
+                <span class="flow-item-label">Physical State:</span>
+                <span class="flow-item-value" id="vis-state-val" style="color: var(--color-allow);">Unopened Genuine
+                  Box</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Arrow 1 -->
+          <div class="flow-arrow-box">➔</div>
+
+          <!-- Stage 2: ESP32 Hardware Station -->
+          <div class="flow-card">
+            <div class="flow-card-header">
+              <span class="flow-badge" style="background: rgba(168, 85, 247, 0.2); color: #c084fc;">STAGE 2</span>
+              <span class="flow-title">ESP32 Checkpoint Rig</span>
+            </div>
+            <div class="flow-diagram-visual" id="vis-stage-2">
+              <div class="flow-item-row">
+                <span class="flow-item-label">RC522 SPI Reader:</span>
+                <span class="flow-item-value">Read Tag A1B2C3D4</span>
+              </div>
+              <div class="flow-item-row">
+                <span class="flow-item-label">Tamper GPIO 4:</span>
+                <span class="flow-item-value" id="vis-gpio-val" style="color: var(--color-allow);">LOW (0V / Pull-Up
+                  Grounded)</span>
+              </div>
+              <div class="flow-item-row">
+                <span class="flow-item-label">Wi-Fi HTTP Client:</span>
+                <span class="flow-item-value">POST /api/scan JSON</span>
+              </div>
+              <div class="flow-item-row">
+                <span class="flow-item-label">Hardware Actuation:</span>
+                <span class="flow-item-value" id="vis-act-val" style="color: var(--color-allow);">Green LED ON (GPIO
+                  26)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Arrow 2 -->
+          <div class="flow-arrow-box">➔</div>
+
+          <!-- Stage 3: Zero-Trust Decision Engine -->
+          <div class="flow-card">
+            <div class="flow-card-header">
+              <span class="flow-badge" style="background: rgba(16, 185, 129, 0.2); color: var(--color-allow);">STAGE
+                3</span>
+              <span class="flow-title">Security Engine</span>
+            </div>
+            <div class="flow-diagram-visual" id="vis-stage-3">
+              <div class="flow-item-row">
+                <span class="flow-item-label">Identity Check:</span>
+                <span class="flow-item-value" style="color: var(--color-allow);">Registered (Apex Inc.)</span>
+              </div>
+              <div class="flow-item-row">
+                <span class="flow-item-label">Seal Verification:</span>
+                <span class="flow-item-value" id="vis-verif-val" style="color: var(--color-allow);">Tamper = FALSE (+20
+                  pts)</span>
+              </div>
+              <div class="flow-item-row">
+                <span class="flow-item-label">Trust Score:</span>
+                <span class="flow-item-value" id="vis-score-val" style="color: var(--color-allow);">100 / 100</span>
+              </div>
+              <div class="flow-item-row">
+                <span class="flow-item-label">Decision:</span>
+                <span class="flow-item-value" id="vis-dec-val"
+                  style="color: var(--color-allow); font-weight: 800;">ALLOW (Access Granted)</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Technical Comparison Matrix (Clean Badges) -->
+    <div>
+      <div class="section-title-box">
+        <div>
+          <h2>Technical Comparison: Why Zero Trust RFID?</h2>
+          <span class="section-subtitle">Comparing Traditional RFID, Standalone Blockchain, and our Cyber-Physical
+            Zero-Trust Smart Label Architecture</span>
+        </div>
+      </div>
+
+      <div class="compare-container">
+        <div class="table-responsive">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Security & Operational Factor</th>
+                <th>Traditional RFID Tracking</th>
+                <th>Standalone Blockchain</th>
+                <th>Our Zero Trust Smart Label System</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Physical Package Opening Detection</td>
+                <td><span class="pill-tag vulnerable">Not Protected</span></td>
+                <td><span class="pill-tag vulnerable">Digital Only</span></td>
+                <td><span class="pill-tag secured">Hardware Seal Rupture Sensor</span></td>
+              </tr>
+              <tr>
+                <td>Cloned RFID Tag Mitigation</td>
+                <td><span class="pill-tag vulnerable">Blindly Trusted</span></td>
+                <td><span class="pill-tag partial">Limited Defense</span></td>
+                <td><span class="pill-tag secured">Concurrent Clone Detection</span></td>
+              </tr>
+              <tr>
+                <td>Sequential Route Verification</td>
+                <td><span class="pill-tag vulnerable">No Verification</span></td>
+                <td><span class="pill-tag secured">Smart Contract Logic</span></td>
+                <td><span class="pill-tag secured">Dynamic Topology Enforcement</span></td>
+              </tr>
+              <tr>
+                <td>Impossible Velocity / Replay Defense</td>
+                <td><span class="pill-tag vulnerable">Not Protected</span></td>
+                <td><span class="pill-tag vulnerable">Not Protected</span></td>
+                <td><span class="pill-tag secured">Timestamp Delta Bounds</span></td>
+              </tr>
+              <tr>
+                <td>Insider Coercion / Silent Duress</td>
+                <td><span class="pill-tag vulnerable">Not Supported</span></td>
+                <td><span class="pill-tag vulnerable">Not Supported</span></td>
+                <td><span class="pill-tag secured">Deceptive UI + Covert Alarm</span></td>
+              </tr>
+              <tr>
+                <td>Verification Latency & Hardware Cost</td>
+                <td>Low cost, high vulnerability</td>
+                <td>High gas fees, slow latency</td>
+                <td><span class="pill-tag secured">Low-cost ESP32 (&lt; 100ms)</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Interactive Trust Score Calculator Sandbox -->
+    <div>
+      <div class="section-title-box">
+        <div>
+          <h2>Interactive Zero-Trust Scoring Simulator</h2>
+          <span class="section-subtitle">Toggle security verification factors below to observe real-time Trust Score &
+            Decision changes</span>
+        </div>
+      </div>
+
+      <div class="interactive-calculator-card">
+        <div class="calc-controls-grid">
+
+          <div class="calc-toggle-item" onclick="toggleFactor('rfid')">
+            <div class="calc-toggle-info">
+              <span class="calc-toggle-title">1. RFID Registration Check</span>
+              <span class="calc-toggle-weight">Weight: +20 pts (Tag is Registered)</span>
+            </div>
+            <input type="checkbox" id="calc-rfid" checked onclick="event.stopPropagation(); updateScoreCalc();">
+          </div>
+
+          <div class="calc-toggle-item" onclick="toggleFactor('seal')">
+            <div class="calc-toggle-info">
+              <span class="calc-toggle-title">2. Physical Tamper Seal Intact</span>
+              <span class="calc-toggle-weight">Weight: +20 pts (Loop Intact)</span>
+            </div>
+            <input type="checkbox" id="calc-seal" checked onclick="event.stopPropagation(); updateScoreCalc();">
+          </div>
+
+          <div class="calc-toggle-item" onclick="toggleFactor('route')">
+            <div class="calc-toggle-info">
+              <span class="calc-toggle-title">3. Correct Expected Route</span>
+              <span class="calc-toggle-weight">Weight: +20 pts (Sequence Valid)</span>
+            </div>
+            <input type="checkbox" id="calc-route" checked onclick="event.stopPropagation(); updateScoreCalc();">
+          </div>
+
+          <div class="calc-toggle-item" onclick="toggleFactor('speed')">
+            <div class="calc-toggle-info">
+              <span class="calc-toggle-title">4. Travel Speed & Time Check</span>
+              <span class="calc-toggle-weight">Weight: +15 pts (Velocity Normal)</span>
+            </div>
+            <input type="checkbox" id="calc-speed" checked onclick="event.stopPropagation(); updateScoreCalc();">
+          </div>
+
+          <div class="calc-toggle-item" onclick="toggleFactor('unique')">
+            <div class="calc-toggle-info">
+              <span class="calc-toggle-title">5. Duplicate Tag Check</span>
+              <span class="calc-toggle-weight">Weight: +10 pts (No Concurrent Clone)</span>
+            </div>
+            <input type="checkbox" id="calc-unique" checked onclick="event.stopPropagation(); updateScoreCalc();">
+          </div>
+
+          <div class="calc-toggle-item" onclick="toggleFactor('pin')">
+            <div class="calc-toggle-info">
+              <span class="calc-toggle-title">6. Employee PIN Authentication</span>
+              <span class="calc-toggle-weight">Weight: +15 pts (Standard PIN 1234)</span>
+            </div>
+            <input type="checkbox" id="calc-pin" checked onclick="event.stopPropagation(); updateScoreCalc();">
+          </div>
+
+        </div>
+
+        <!-- Live Score Display Output -->
+        <div class="calc-score-display" id="calc-display-box">
+          <span
+            style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Calculated
+            Trust Score</span>
+          <div class="live-gauge-number" id="calc-score-num" style="color: var(--color-allow);">100</div>
+          <div class="live-decision-badge badge-decision ALLOW" id="calc-decision-badge">ALLOW</div>
+          <p id="calc-desc-text" style="font-size: 0.78rem; color: var(--text-secondary);">All 6 multi-factor
+            verification checks satisfied. Hardware illuminates Green LED.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Interactive Supply Chain Journey Stages -->
+    <div>
+      <div class="section-title-box">
+        <div>
+          <h2>Supply Chain Checkpoint Topology</h2>
+          <span class="section-subtitle">Click any checkpoint stage below to view its location, hardware, and security
+            responsibilities</span>
+        </div>
+      </div>
+
+      <div class="nodes-interactive-container">
+        <div class="node-interactive-card selected" id="node-card-c01" onclick="selectNodeStage('C01')">
+          <span class="node-stage-badge">Checkpoint C01</span>
+          <span class="node-stage-name">Manufacturer Node</span>
+          <span class="node-stage-loc">Factory Floor #1 (Shenzhen)</span>
+        </div>
+
+        <div class="node-interactive-card" id="node-card-c02" onclick="selectNodeStage('C02')">
+          <span class="node-stage-badge">Checkpoint C02</span>
+          <span class="node-stage-name">Central Warehouse</span>
+          <span class="node-stage-loc">Logistics Hub A (Hong Kong)</span>
+        </div>
+
+        <div class="node-interactive-card" id="node-card-c03" onclick="selectNodeStage('C03')">
+          <span class="node-stage-badge">Checkpoint C03</span>
+          <span class="node-stage-name">Regional Distributor</span>
+          <span class="node-stage-loc">Distribution Center B (Singapore)</span>
+        </div>
+
+        <div class="node-interactive-card" id="node-card-c04" onclick="selectNodeStage('C04')">
+          <span class="node-stage-badge">Checkpoint C04</span>
+          <span class="node-stage-name">Retail Store</span>
+          <span class="node-stage-loc">Retail Outlet #104 (Tokyo)</span>
+        </div>
+      </div>
+
+      <div class="workflow-box" style="margin-top: 1rem;" id="node-stage-detail-box">
+        <h3 id="node-detail-title" style="font-size: 1.1rem; color: var(--accent-blue); margin-bottom: 0.5rem;">C01:
+          Manufacturer Node (Factory Floor #1)</h3>
+        <p id="node-detail-desc" style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5;">
+          <strong>Operations:</strong> Initial product registration, RFID smart label programming, package physical
+          conductive seal application, and baseline authentication. Expected transit time to next hub: 5s simulation /
+          24h actual.
+        </p>
+      </div>
+    </div>
+
+    <!-- 5. Core Features of the Project & Technical Capabilities -->
+    <div>
+      <div class="section-title-box">
+        <div>
+          <h2>✨ Core Features of the Project & Technical Capabilities</h2>
+          <span class="section-subtitle">Deep-dive into the 6 foundational security mechanisms of the Zero-Trust Smart
+            Label Framework</span>
+        </div>
+      </div>
+
+      <div class="feature-grid">
+
+        <!-- Feature 1: Zero Trust -->
+        <div class="feature-card-interactive" style="--card-accent: #3b82f6; --card-glow: rgba(59, 130, 246, 0.4);">
+          <div class="feature-header">
+            <div class="feature-icon-box" style="background: rgba(59, 130, 246, 0.12); color: #60a5fa;">🛡️</div>
+            <div>
+              <div class="feature-card-title">1. Continuous Zero-Trust Engine</div>
+              <span class="pill-tag secured" style="font-size: 0.7rem; padding: 0.2rem 0.6rem;">Multi-Factor
+                Verification</span>
+            </div>
+          </div>
+          <p class="feature-card-desc">
+            Eliminates implicit trust in RFID tags. Every supply chain package is dynamically re-verified at each
+            checkpoint using a weighted <strong>Trust Score (0–100)</strong> evaluating 8 physical and contextual
+            vectors.
+          </p>
+          <div class="feature-pill-bar">
+            <span class="flow-badge" style="background: rgba(59, 130, 246, 0.15); color: #93c5fd;">ALLOW &ge; 80</span>
+            <span class="flow-badge" style="background: rgba(245, 158, 11, 0.15); color: #fde047;">FLAG 50–79</span>
+            <span class="flow-badge" style="background: rgba(239, 68, 68, 0.15); color: #fca5a5;">QUARANTINE &lt;
+              50</span>
+          </div>
+        </div>
+
+        <!-- Feature 2: Tamper Seal -->
+        <div class="feature-card-interactive" style="--card-accent: #ef4444; --card-glow: rgba(239, 68, 68, 0.4);">
+          <div class="feature-header">
+            <div class="feature-icon-box" style="background: rgba(239, 68, 68, 0.12); color: #f87171;">⚡</div>
+            <div>
+              <div class="feature-card-title">2. Package Tamper Rupture Sensing</div>
+              <span class="pill-tag vulnerable" style="font-size: 0.7rem; padding: 0.2rem 0.6rem;">&lt; 50&mu;s Hardware
+                Trigger</span>
+            </div>
+          </div>
+          <p class="feature-card-desc">
+            A conductive wire seal is taped across the box opening. If sliced or opened in transit, the GPIO 4 circuit
+            is broken, immediately penalizing the trust score by 80 points and forcing an instant
+            <strong>QUARANTINE</strong> lockdown.
+          </p>
+          <div class="feature-pill-bar">
+            <span class="flow-badge" style="background: rgba(239, 68, 68, 0.15); color: #fca5a5;">GPIO 4
+              (Pull-Up)</span>
+            <span class="flow-badge" style="background: rgba(239, 68, 68, 0.15); color: #fca5a5;">Red LED + Alarm
+              Buzzer</span>
+          </div>
+        </div>
+
+        <!-- Feature 3: Route Topology -->
+        <div class="feature-card-interactive" style="--card-accent: #f59e0b; --card-glow: rgba(245, 158, 11, 0.4);">
+          <div class="feature-header">
+            <div class="feature-icon-box" style="background: rgba(245, 158, 11, 0.12); color: #fbbf24;">🗺️</div>
+            <div>
+              <div class="feature-card-title">3. Dynamic Route Topology Guard</div>
+              <span class="pill-tag partial" style="font-size: 0.7rem; padding: 0.2rem 0.6rem;">Sequential Node
+                Tracking</span>
+            </div>
+          </div>
+          <p class="feature-card-desc">
+            Enforces strict supply chain progression across all facilities (Manufacturer &rarr; Warehouse &rarr;
+            Distributor &rarr; Retailer). Bypassing inspection hubs or backwards cargo movement is instantly detected.
+          </p>
+          <div class="feature-pill-bar">
+            <span class="flow-badge" style="background: rgba(245, 158, 11, 0.15); color: #fde047;">Skipped Hub
+              Detection</span>
+            <span class="flow-badge" style="background: rgba(245, 158, 11, 0.15); color: #fde047;">Backtrack
+              Flagging</span>
+          </div>
+        </div>
+
+        <!-- Feature 4: Clone & Velocity -->
+        <div class="feature-card-interactive" style="--card-accent: #06b6d4; --card-glow: rgba(6, 182, 212, 0.4);">
+          <div class="feature-header">
+            <div class="feature-icon-box" style="background: rgba(6, 182, 212, 0.12); color: #22d3ee;">👥</div>
+            <div>
+              <div class="feature-card-title">4. Anti-Cloning & Velocity Analytics</div>
+              <span class="pill-tag secured" style="font-size: 0.7rem; padding: 0.2rem 0.6rem;">Replay & Duplicate
+                Defense</span>
+            </div>
+          </div>
+          <p class="feature-card-desc">
+            Monitors concurrent tag usage across distant nodes. Enforces physical transit velocity bounds ($t \ge
+            \text{min\_time}$) to immediately flag replayed scan tokens and duplicate cloned RFID tags.
+          </p>
+          <div class="feature-pill-bar">
+            <span class="flow-badge" style="background: rgba(6, 182, 212, 0.15); color: #67e8f9;">Simultaneous Clone
+              Defense</span>
+            <span class="flow-badge" style="background: rgba(6, 182, 212, 0.15); color: #67e8f9;">Impossible Speed
+              Bounds</span>
+          </div>
+        </div>
+
+        <!-- Feature 5: Silent Duress -->
+        <div class="feature-card-interactive" style="--card-accent: #a855f7; --card-glow: rgba(168, 85, 247, 0.4);">
+          <div class="feature-header">
+            <div class="feature-icon-box" style="background: rgba(168, 85, 247, 0.12); color: #c084fc;">🚨</div>
+            <div>
+              <div class="feature-card-title">5. Silent Duress Coercion Shield</div>
+              <span class="pill-tag secured" style="font-size: 0.7rem; padding: 0.2rem 0.6rem;">Emergency PIN
+                Protection</span>
+            </div>
+          </div>
+          <p class="feature-card-desc">
+            Protects warehouse operators forced by adversaries to approve shipments. Entering duress PIN
+            <strong>'9999'</strong> displays normal "ALLOW" to the coercer while secretly dispatching a critical alarm
+            to security.
+          </p>
+          <div class="feature-pill-bar">
+            <span class="flow-badge" style="background: rgba(168, 85, 247, 0.15); color: #d8b4fe;">Deceptive UI
+              Masking</span>
+            <span class="flow-badge" style="background: rgba(168, 85, 247, 0.15); color: #d8b4fe;">Covert Alert
+              Dispatch</span>
+          </div>
+        </div>
+
+        <!-- Feature 6: Hardware Console -->
+        <div class="feature-card-interactive" style="--card-accent: #10b981; --card-glow: rgba(16, 185, 129, 0.4);">
+          <div class="feature-header">
+            <div class="feature-icon-box" style="background: rgba(16, 185, 129, 0.12); color: #34d399;">📟</div>
+            <div>
+              <div class="feature-card-title">6. Live Console & Hardware Simulator</div>
+              <span class="pill-tag secured" style="font-size: 0.7rem; padding: 0.2rem 0.6rem;">Web Audio & LED
+                Emulation</span>
+            </div>
+          </div>
+          <p class="feature-card-desc">
+            Complete virtual ESP32 hardware simulator, dynamic on-the-fly product registration, 1-click faculty attack
+            demonstration suite (Demos 1–6), live security incident feed, and SQLite audit logging.
+          </p>
+          <div class="feature-pill-bar">
+            <span class="flow-badge" style="background: rgba(16, 185, 129, 0.15); color: #6ee7b7;">Dynamic Product
+              Registration</span>
+            <span class="flow-badge" style="background: rgba(16, 185, 129, 0.15); color: #6ee7b7;">Interactive Demo
+              Bench</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Hardware Flow Interactive Switcher
+    function setArchiMode(mode) {
+      const btnNormal = document.getElementById("btn-mode-normal");
+      const btnTamper = document.getElementById("btn-mode-tamper");
+
+      const sealVal = document.getElementById("vis-seal-val");
+      const stateVal = document.getElementById("vis-state-val");
+      const gpioVal = document.getElementById("vis-gpio-val");
+      const actVal = document.getElementById("vis-act-val");
+      const verifVal = document.getElementById("vis-verif-val");
+      const scoreVal = document.getElementById("vis-score-val");
+      const decVal = document.getElementById("vis-dec-val");
+
+      if (mode === "normal") {
+        btnNormal.className = "btn-archi-mode active-normal";
+        btnTamper.className = "btn-archi-mode";
+
+        sealVal.textContent = "Closed Wire Loop (Intact)";
+        sealVal.style.color = "var(--color-allow)";
+
+        stateVal.textContent = "Unopened Genuine Box";
+        stateVal.style.color = "var(--color-allow)";
+
+        gpioVal.textContent = "LOW (0V / Pull-Up Grounded)";
+        gpioVal.style.color = "var(--color-allow)";
+
+        actVal.textContent = "Green LED ON (GPIO 26)";
+        actVal.style.color = "var(--color-allow)";
+
+        verifVal.textContent = "Tamper = FALSE (+20 pts)";
+        verifVal.style.color = "var(--color-allow)";
+
+        scoreVal.textContent = "100 / 100";
+        scoreVal.style.color = "var(--color-allow)";
+
+        decVal.textContent = "ALLOW (Access Granted)";
+        decVal.style.color = "var(--color-allow)";
+      } else {
+        btnNormal.className = "btn-archi-mode";
+        btnTamper.className = "btn-archi-mode active-tamper";
+
+        sealVal.textContent = "Broken / Severed Wire Loop";
+        sealVal.style.color = "var(--color-quarantine)";
+
+        stateVal.textContent = "PACKAGE OPENED IN TRANSIT!";
+        stateVal.style.color = "var(--color-quarantine)";
+
+        gpioVal.textContent = "HIGH (3.3V / Pull-Up Active)";
+        gpioVal.style.color = "var(--color-quarantine)";
+
+        actVal.textContent = "Red LED ON (GPIO 33) + Alarm Buzzer";
+        actVal.style.color = "var(--color-quarantine)";
+
+        verifVal.textContent = "Tamper = TRUE (-80 pts penalty)";
+        verifVal.style.color = "var(--color-quarantine)";
+
+        scoreVal.textContent = "20 / 100";
+        scoreVal.style.color = "var(--color-quarantine)";
+
+        decVal.textContent = "QUARANTINE (Blocked Entry)";
+        decVal.style.color = "var(--color-quarantine)";
+      }
+    }
+
+    // Interactive Trust Scoring Sandbox Calculator Logic
+    function updateScoreCalc() {
+      const isRfid = document.getElementById("calc-rfid").checked;
+      const isSeal = document.getElementById("calc-seal").checked;
+      const isRoute = document.getElementById("calc-route").checked;
+      const isSpeed = document.getElementById("calc-speed").checked;
+      const isUnique = document.getElementById("calc-unique").checked;
+      const isPin = document.getElementById("calc-pin").checked;
+
+      let score = 0;
+      if (isRfid) score += 20;
+      if (isSeal) score += 20;
+      if (isRoute) score += 20;
+      if (isSpeed) score += 15;
+      if (isUnique) score += 10;
+      if (isPin) score += 15;
+
+      const scoreNumEl = document.getElementById("calc-score-num");
+      const badgeEl = document.getElementById("calc-decision-badge");
+      const descEl = document.getElementById("calc-desc-text");
+
+      scoreNumEl.textContent = score;
+
+      if (!isSeal || score < 50) {
+        scoreNumEl.style.color = "var(--color-quarantine)";
+        badgeEl.textContent = "QUARANTINE";
+        badgeEl.className = "live-decision-badge badge-decision QUARANTINE";
+        descEl.textContent = isSeal ? "Critical trust violation (Score < 50). Hardware triggers Red LED & alarm buzzer." : "PHYSICAL TAMPER DETECTED! Package seal broken. Item quarantined immediately.";
+      } else if (score < 80) {
+        scoreNumEl.style.color = "var(--color-flag)";
+        badgeEl.textContent = "FLAG";
+        badgeEl.className = "live-decision-badge badge-decision FLAG";
+        descEl.textContent = "Suspicious contextual anomaly detected (Score 50–79). Hardware triggers Yellow LED for inspection.";
+      } else {
+        scoreNumEl.style.color = "var(--color-allow)";
+        badgeEl.textContent = "ALLOW";
+        badgeEl.className = "live-decision-badge badge-decision ALLOW";
+        descEl.textContent = "All multi-factor checks satisfied (Score ≥ 80). Hardware illuminates Green LED.";
+      }
+    }
+
+    function toggleFactor(name) {
+      const checkbox = document.getElementById("calc-" + name);
+      checkbox.checked = !checkbox.checked;
+      updateScoreCalc();
+    }
+
+    // Interactive Checkpoint Topology Selector Logic
+    const nodeDetails = {
+      "C01": {
+        title: "C01: Manufacturer Node (Factory Floor #1)",
+        desc: "<strong>Operations:</strong> Initial product registration, RFID smart label programming, package physical conductive seal application, and baseline authentication. Expected transit time to next hub: 5s simulation / 24h actual."
+      },
+      "C02": {
+        title: "C02: Central Warehouse (Logistics Hub A)",
+        desc: "<strong>Operations:</strong> Bulk intake verification, package seal continuity check via RC522 reader, transit time calculation from factory, and inventory dispatching."
+      },
+      "C03": {
+        title: "C03: Regional Distributor (Distribution Center B)",
+        desc: "<strong>Operations:</strong> Intermediate transit hub verification, sequential route check (verifies item did not skip Warehouse C02), and duplicate RFID clone monitoring."
+      },
+      "C04": {
+        title: "C04: Retail Store (Retail Outlet #104)",
+        desc: "<strong>Operations:</strong> Final destination shelf verification, final package seal inspection, employee credential auth with Silent Duress protection, and delivery sign-off."
+      }
+    };
+
+    function selectNodeStage(cpId) {
+      document.querySelectorAll(".node-interactive-card").forEach(c => c.classList.remove("selected"));
+      const card = document.getElementById("node-card-" + cpId.toLowerCase());
+      if (card) card.classList.add("selected");
+
+      const info = nodeDetails[cpId];
+      if (info) {
+        document.getElementById("node-detail-title").innerHTML = info.title;
+        document.getElementById("node-detail-desc").innerHTML = info.desc;
+      }
+    }
+    // Theme Toggle Logic
+    (function() {
+      const themeToggleBtn = document.querySelector('.theme-toggle-btn');
+      if (themeToggleBtn) {
+        if (localStorage.getItem('theme') === 'light') {
+          document.body.classList.add('light-theme');
+        }
+        themeToggleBtn.addEventListener('click', () => {
+          document.body.classList.toggle('light-theme');
+          if (document.body.classList.contains('light-theme')) {
+            localStorage.setItem('theme', 'light');
+          } else {
+            localStorage.setItem('theme', 'dark');
+          }
+        });
+      }
+    })();
+  </script>
+
+</body>
+
+</html>
