@@ -27,7 +27,7 @@ def evaluate_zero_trust_scan(
     if not product:
         if checkpoint_id == "C01":
             # Auto-register new tags at Manufacturer Node (C01)
-            new_prod_id = f"P_AUTO_{int(datetime.datetime.utcnow().timestamp())}"
+            new_prod_id = f"P_AUTO_{rfid_clean}"
             product = Product(
                 product_id=new_prod_id,
                 product_name=f"Auto-Enrolled Product",

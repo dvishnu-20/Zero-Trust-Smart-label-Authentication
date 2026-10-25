@@ -737,13 +737,12 @@
                   Grounded)</span>
               </div>
               <div class="flow-item-row">
-                <span class="flow-item-label">Wi-Fi HTTP Client:</span>
-                <span class="flow-item-value">POST /api/scan JSON</span>
+                <span class="flow-item-label">Host Interface:</span>
+                <span class="flow-item-value">USB Serial (115200 baud)</span>
               </div>
               <div class="flow-item-row">
-                <span class="flow-item-label">Hardware Actuation:</span>
-                <span class="flow-item-value" id="vis-act-val" style="color: var(--color-allow);">Green LED ON (GPIO
-                  26)</span>
+                <span class="flow-item-label">Station Feedback:</span>
+                <span class="flow-item-value" id="vis-act-val" style="color: var(--color-allow);">OLED: CP 1 | Software: ALLOW</span>
               </div>
             </div>
           </div>
@@ -765,8 +764,7 @@
               </div>
               <div class="flow-item-row">
                 <span class="flow-item-label">Seal Verification:</span>
-                <span class="flow-item-value" id="vis-verif-val" style="color: var(--color-allow);">Tamper = FALSE (+20
-                  pts)</span>
+                <span class="flow-item-value" id="vis-verif-val" style="color: var(--color-allow);">Tamper = FALSE (Intact / 0 Penalty)</span>
               </div>
               <div class="flow-item-row">
                 <span class="flow-item-label">Trust Score:</span>
@@ -853,8 +851,7 @@
       <div class="section-title-box">
         <div>
           <h2>Interactive Zero-Trust Scoring Simulator</h2>
-          <span class="section-subtitle">Toggle security verification factors below to observe real-time Trust Score &
-            Decision changes</span>
+          <span class="section-subtitle">Simulates the backend Zero-Trust scoring engine: Starts at baseline 100 with deductive violation penalties</span>
         </div>
       </div>
 
@@ -864,7 +861,7 @@
           <div class="calc-toggle-item" onclick="toggleFactor('rfid')">
             <div class="calc-toggle-info">
               <span class="calc-toggle-title">1. RFID Registration Check</span>
-              <span class="calc-toggle-weight">Weight: +20 pts (Tag is Registered)</span>
+              <span class="calc-toggle-weight">Registered: Baseline 100 | Unregistered: Drops to 0</span>
             </div>
             <input type="checkbox" id="calc-rfid" checked onclick="event.stopPropagation(); updateScoreCalc();">
           </div>
@@ -872,7 +869,7 @@
           <div class="calc-toggle-item" onclick="toggleFactor('seal')">
             <div class="calc-toggle-info">
               <span class="calc-toggle-title">2. Physical Tamper Seal Intact</span>
-              <span class="calc-toggle-weight">Weight: +20 pts (Loop Intact)</span>
+              <span class="calc-toggle-weight">Intact: 0 Penalty | Broken Seal: -80 pts (QUARANTINE)</span>
             </div>
             <input type="checkbox" id="calc-seal" checked onclick="event.stopPropagation(); updateScoreCalc();">
           </div>
@@ -880,7 +877,7 @@
           <div class="calc-toggle-item" onclick="toggleFactor('route')">
             <div class="calc-toggle-info">
               <span class="calc-toggle-title">3. Correct Expected Route</span>
-              <span class="calc-toggle-weight">Weight: +20 pts (Sequence Valid)</span>
+              <span class="calc-toggle-weight">In-Sequence: 0 Penalty | Skipped Hub: -35 pts (FLAG)</span>
             </div>
             <input type="checkbox" id="calc-route" checked onclick="event.stopPropagation(); updateScoreCalc();">
           </div>
@@ -888,15 +885,15 @@
           <div class="calc-toggle-item" onclick="toggleFactor('speed')">
             <div class="calc-toggle-info">
               <span class="calc-toggle-title">4. Travel Speed & Time Check</span>
-              <span class="calc-toggle-weight">Weight: +15 pts (Velocity Normal)</span>
+              <span class="calc-toggle-weight">Normal Velocity: 0 Penalty | Impossible Speed: -30 pts (FLAG)</span>
             </div>
             <input type="checkbox" id="calc-speed" checked onclick="event.stopPropagation(); updateScoreCalc();">
           </div>
 
           <div class="calc-toggle-item" onclick="toggleFactor('unique')">
             <div class="calc-toggle-info">
-              <span class="calc-toggle-title">5. Duplicate Tag Check</span>
-              <span class="calc-toggle-weight">Weight: +10 pts (No Concurrent Clone)</span>
+              <span class="calc-toggle-title">5. Duplicate Tag / Clone Check</span>
+              <span class="calc-toggle-weight">Unique Tag: 0 Penalty | Concurrent Clone: -40 pts (FLAG)</span>
             </div>
             <input type="checkbox" id="calc-unique" checked onclick="event.stopPropagation(); updateScoreCalc();">
           </div>
@@ -904,7 +901,7 @@
           <div class="calc-toggle-item" onclick="toggleFactor('pin')">
             <div class="calc-toggle-info">
               <span class="calc-toggle-title">6. Employee PIN Authentication</span>
-              <span class="calc-toggle-weight">Weight: +15 pts (Standard PIN 1234)</span>
+              <span class="calc-toggle-weight">Valid PIN 1234: 0 Penalty | Invalid PIN: -15 pts</span>
             </div>
             <input type="checkbox" id="calc-pin" checked onclick="event.stopPropagation(); updateScoreCalc();">
           </div>
@@ -1150,10 +1147,10 @@
         gpioVal.textContent = "LOW (0V / Pull-Up Grounded)";
         gpioVal.style.color = "var(--color-allow)";
 
-        actVal.textContent = "Green LED ON (GPIO 26)";
+        actVal.textContent = "OLED: CP 1 | Software: ALLOW";
         actVal.style.color = "var(--color-allow)";
 
-        verifVal.textContent = "Tamper = FALSE (+20 pts)";
+        verifVal.textContent = "Tamper = FALSE (Intact / 0 Penalty)";
         verifVal.style.color = "var(--color-allow)";
 
         scoreVal.textContent = "100 / 100";
@@ -1174,7 +1171,7 @@
         gpioVal.textContent = "HIGH (3.3V / Pull-Up Active)";
         gpioVal.style.color = "var(--color-quarantine)";
 
-        actVal.textContent = "Red LED ON (GPIO 33) + Alarm Buzzer";
+        actVal.textContent = "OLED: TAMPERED | Software: QUARANTINE";
         actVal.style.color = "var(--color-quarantine)";
 
         verifVal.textContent = "Tamper = TRUE (-80 pts penalty)";
@@ -1188,7 +1185,7 @@
       }
     }
 
-    // Interactive Trust Scoring Sandbox Calculator Logic
+    // Interactive Trust Scoring Sandbox Calculator Logic (Matches backend/security_engine.py)
     function updateScoreCalc() {
       const isRfid = document.getElementById("calc-rfid").checked;
       const isSeal = document.getElementById("calc-seal").checked;
@@ -1197,13 +1194,19 @@
       const isUnique = document.getElementById("calc-unique").checked;
       const isPin = document.getElementById("calc-pin").checked;
 
-      let score = 0;
-      if (isRfid) score += 20;
-      if (isSeal) score += 20;
-      if (isRoute) score += 20;
-      if (isSpeed) score += 15;
-      if (isUnique) score += 10;
-      if (isPin) score += 15;
+      let score = 100;
+
+      if (!isRfid) {
+        score = 0;
+      } else {
+        if (!isSeal) score -= 80;
+        if (!isRoute) score -= 35;
+        if (!isSpeed) score -= 30;
+        if (!isUnique) score -= 40;
+        if (!isPin) score -= 15;
+      }
+
+      score = Math.max(0, Math.min(100, score));
 
       const scoreNumEl = document.getElementById("calc-score-num");
       const badgeEl = document.getElementById("calc-decision-badge");
@@ -1211,21 +1214,32 @@
 
       scoreNumEl.textContent = score;
 
-      if (!isSeal || score < 50) {
+      if (!isRfid) {
         scoreNumEl.style.color = "var(--color-quarantine)";
         badgeEl.textContent = "QUARANTINE";
         badgeEl.className = "live-decision-badge badge-decision QUARANTINE";
-        descEl.textContent = isSeal ? "Critical trust violation (Score < 50). Hardware triggers Red LED & alarm buzzer." : "PHYSICAL TAMPER DETECTED! Package seal broken. Item quarantined immediately.";
+        descEl.textContent = "UNREGISTERED RFID TAG! Tag not registered in system. Trust score dropped immediately to 0. Cargo blocked.";
+      } else if (!isSeal || score < 50) {
+        scoreNumEl.style.color = "var(--color-quarantine)";
+        badgeEl.textContent = "QUARANTINE";
+        badgeEl.className = "live-decision-badge badge-decision QUARANTINE";
+        if (!isSeal) {
+          descEl.textContent = "PHYSICAL TAMPER DETECTED! Conductive loop broken (GPIO 4 HIGH). -80 pts penalty applied (Score: " + score + "/100). Cargo quarantined immediately.";
+        } else {
+          descEl.textContent = "CRITICAL TRUST DEFICIT (Score " + score + " < 50)! Cumulative violations exceeded safe threshold. Hardware triggers Red LED & alarm buzzer.";
+        }
       } else if (score < 80) {
         scoreNumEl.style.color = "var(--color-flag)";
         badgeEl.textContent = "FLAG";
         badgeEl.className = "live-decision-badge badge-decision FLAG";
-        descEl.textContent = "Suspicious contextual anomaly detected (Score 50–79). Hardware triggers Yellow LED for inspection.";
+        descEl.textContent = "Suspicious contextual anomaly detected (Score: " + score + "/100). Hardware triggers Yellow LED for manual security inspection.";
       } else {
         scoreNumEl.style.color = "var(--color-allow)";
         badgeEl.textContent = "ALLOW";
         badgeEl.className = "live-decision-badge badge-decision ALLOW";
-        descEl.textContent = "All multi-factor checks satisfied (Score ≥ 80). Hardware illuminates Green LED.";
+        descEl.textContent = score === 100 
+          ? "All multi-factor checks satisfied (Score: 100/100). Hardware illuminates Green LED."
+          : "Acceptable trust threshold met (Score: " + score + "/100 >= 80). Hardware illuminates Green LED.";
       }
     }
 

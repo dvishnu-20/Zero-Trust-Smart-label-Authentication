@@ -81,17 +81,25 @@ def main():
                     
                 # Expected format from ESP32: "A1 B2 C3 D4, 2, 1" or "A1 B2 C3 D4, 2"
                 if "," in line:
-                    parts = line.split(",")
+                    parts = [p.strip() for p in line.split(",")]
                     if len(parts) >= 2:
-                        uid_raw = parts[0].strip()
-                        cp_num = parts[1].strip()
+                        uid_raw = parts[0]
+                        cp_num = parts[1]
+                        
+                        # Remove spaces and uppercase
+                        uid_clean = uid_raw.replace(" ", "").upper()
+                        
+                        # Validate: Checkpoint must be a single digit (1-4) and UID must be valid hex
+                        is_valid_cp = cp_num.isdigit() and (1 <= int(cp_num) <= 4)
+                        is_valid_hex = bool(uid_clean) and all(c in "0123456789ABCDEF" for c in uid_clean) and len(uid_clean) >= 6
+                        
+                        if not (is_valid_cp and is_valid_hex):
+                            # Ignore ESP32 bootloader / ROM debug logs (e.g. rst:0x1, configsip, load:0x...)
+                            continue
                         
                         is_tampered = False
                         if len(parts) >= 3:
                             is_tampered = (parts[2].strip() == "1")
-                        
-                        # Remove spaces from UID to match backend expectation
-                        uid_clean = uid_raw.replace(" ", "").upper()
                         
                         # Format Checkpoint ID (e.g. 1 -> C01)
                         checkpoint_id = f"C0{cp_num}"
