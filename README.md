@@ -2,7 +2,7 @@
 
 An end-to-end Cyber-Physical Supply Chain Security prototype implementing continuous multi-factor Zero-Trust verification for RFID smart labels. The system validates physical package tamper seals, sequential route topologies, travel velocities, duplicate RFID cloning, and operator credentials with a deceptive silent duress mechanism.
 
-The edge hardware (ESP32) communicates directly with the FastAPI backend over a high-speed **USB-Serial Bridge** at 115200 baud, providing low-latency, tamper-resistant telemetry without local Wi-Fi dependencies. All operational decisions, scores ($0–100$), violations, and visual telemetry are reflected across the **Software Dashboard, Administrative Console, and On-board OLED Display**.
+The edge hardware (ESP32) communicates directly with the FastAPI backend over a high-speed **USB-Serial Bridge** at 115200 baud, providing low-latency, tamper-resistant telemetry without local Wi-Fi dependencies. All operational decisions, scores (0–100), violations, and visual telemetry are reflected across the **Software Dashboard, Administrative Console, and On-board OLED Display**.
 
 ---
 
@@ -11,18 +11,18 @@ The edge hardware (ESP32) communicates directly with the FastAPI backend over a 
 The system adheres strictly to the Zero-Trust axiom: ***"Never Trust, Always Verify"***. An enrolled RFID tag alone is never sufficient for transit authorization. Every scan undergoes 8 multi-factor verification checks:
 
 1. **RFID Database Enrollment Check**: Validates whether the RFID tag UID is officially registered in the supply chain database. Unregistered tags are quarantined (with controlled auto-enrollment permitted only at Manufacturer Node `C01`).
-2. **Physical Conductive Tamper Seal Check**: Senses whether the physical breakaway conductive circuit over the package seal is closed (3.3V intact) or broken/opened (GND pull-down). Tampering incurs an immediate $-80$ score deduction and categorical quarantine.
+2. **Physical Conductive Tamper Seal Check**: Senses whether the physical breakaway conductive circuit over the package seal is closed (3.3V intact) or broken/opened (GND pull-down). Tampering incurs an immediate -80 score deduction and categorical quarantine.
 3. **Employee Identity & Silent Duress Authentication**: Validates operator credentials. If an operator is coerced and inputs emergency Duress PIN `9999`, the interface deceptively presents `ALLOW (VERIFIED)` to avoid alerting the aggressor while secretly dispatching a critical alarm to central security feeds.
-4. **Sequential Route Topology Check & Station Dwell Policy**: Enforces valid topological state transitions ($C01 \rightarrow C02 \rightarrow C03 \rightarrow C04$). Forward skipping penalizes $-35$ points, and backtracking from downstream stations penalizes $-25$ points. Authorized re-reads at the same physical station ($\text{checkpoint\_id} = \text{current\_checkpoint\_id}$) are recognized as handling dwell scans, maintaining a clean score of 100.
-5. **Travel Velocity & Spatial-Temporal Bounds**: Computes transit time $\Delta t$ from the previous checkpoint. If travel time violates minimum physical transit limits, an `IMPOSSIBLE_TRAVEL_SPEED` violation is logged ($-30$ points).
-6. **Concurrent Duplicate RFID Clone Detection**: Detects whether the same tag UID was scanned at a different checkpoint within a 10-second sliding window, instantly flagging concurrent RF cloning attacks ($-40$ points).
+4. **Sequential Route Topology Check & Station Dwell Policy**: Enforces valid topological state transitions (`C01 -> C02 -> C03 -> C04`). Forward skipping penalizes -35 points, and backtracking from downstream stations penalizes -25 points. Authorized re-reads at the same physical station (`checkpoint_id == current_checkpoint_id`) are recognized as handling dwell scans, maintaining a clean score of 100.
+5. **Travel Velocity & Spatial-Temporal Bounds**: Computes transit time Δt from the previous checkpoint. If travel time violates minimum physical transit limits, an `IMPOSSIBLE_TRAVEL_SPEED` violation is logged (-30 points).
+6. **Concurrent Duplicate RFID Clone Detection**: Detects whether the same tag UID was scanned at a different checkpoint within a 10-second sliding window, instantly flagging concurrent RF cloning attacks (-40 points).
 7. **Scan History Location Consistency**: Confirms that the tag's recorded location matches its immediate prior database scan history.
 8. **Persistent Quarantine Lock**: Once quarantined, a package is permanently locked from transit (`trust_score = 0`). Subsequent rescans cannot clear the quarantine status, and route progression is frozen.
 
 ### Decision Matrix
-* **`ALLOW`** ($\text{Trust Score} \ge 80$): Genuine item, intact seal, verified sequential transit.
-* **`FLAG`** ($50 \le \text{Trust Score} < 80$): Anomaly detected (e.g. forward skip, abnormal velocity). Diverted to secondary manual audit.
-* **`QUARANTINE`** ($\text{Trust Score} < 50$ or Tamper Detected): Physical seal broken, cloned tag, or unregistered item. Cargo transit is halted.
+* **`ALLOW`** (Trust Score ≥ 80): Genuine item, intact seal, verified sequential transit.
+* **`FLAG`** (50 ≤ Trust Score < 80): Anomaly detected (e.g. forward skip, abnormal velocity). Diverted to secondary manual audit.
+* **`QUARANTINE`** (Trust Score < 50 or Tamper Detected): Physical seal broken, cloned tag, or unregistered item. Cargo transit is halted.
 
 ---
 
@@ -94,7 +94,7 @@ tarpproj/
 | | SCL | **GPIO 17** | I2C Clock line |
 | **Tamper Seal** | Lead A | **GPIO 15** | Configured as `INPUT_PULLDOWN`. Connected to 3.3V = Intact (`tamper: 0`). Disconnected = Broken (`tamper: 1`). |
 | | Lead B | **3.3V** | Seal loop circuit source |
-| **Station Switch** | Pushbutton | **GPIO 12** | Configured as `INPUT_PULLUP`. Pressing increments station ($C01 \rightarrow C02 \rightarrow C03 \rightarrow C04$). |
+| **Station Switch** | Pushbutton | **GPIO 12** | Configured as `INPUT_PULLUP`. Pressing increments station (`C01 -> C02 -> C03 -> C04`). |
 
 ---
 
@@ -160,13 +160,13 @@ python run_system.py
 The repository includes a comprehensive, scientifically auditable evaluation kit developed for academic verification:
 
 ### Stage 1: Original 120-Trial Suite (Concordance & Latency)
-Runs 20 trials across each of the 6 core scenarios ($N=120$):
+Runs 20 trials across each of the 6 core scenarios (N = 120):
 ```powershell
 python eval_icoet/run_original_120.py
 python eval_icoet/analyze_original_trials.py trial_results.csv
 ```
 * **Concordance**: **120 / 120 PASS (100%)**
-* **Slowest Single Trial**: **0.044 s** (Benchmark limit: $< 2.000\text{ s}$)
+* **Slowest Single Trial**: **0.044 s** (Benchmark limit: < 2.000 s)
 * **False Tamper Rate**: **0** false alerts in untouched scans
 * **Duress Concealment**: **20 / 20** displayed `ALLOW (VERIFIED)` with background alert.
 
