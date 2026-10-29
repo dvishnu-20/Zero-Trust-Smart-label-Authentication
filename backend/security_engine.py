@@ -1,3 +1,4 @@
+import uuid
 import datetime
 import json
 from typing import Dict, Any, List, Tuple
@@ -27,7 +28,7 @@ def evaluate_zero_trust_scan(
     if not product:
         if checkpoint_id == "C01":
             # Auto-register new tags at Manufacturer Node (C01)
-            new_prod_id = f"P_AUTO_{rfid_clean}"
+            new_prod_id = "P_AUTO_" + uuid.uuid4().hex.upper()
             product = Product(
                 product_id=new_prod_id,
                 product_name=f"Auto-Enrolled Product",
