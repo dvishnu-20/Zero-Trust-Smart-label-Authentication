@@ -1,0 +1,121 @@
+scenario,name,trial,expected,decision,score,result,seconds,new_history_rows
+1,"Genuine scan, in order, seal closed",1,"ALLOW, score 100",ALLOW,100,PASS,0.0499,1
+1,"Genuine scan, in order, seal closed",2,"ALLOW, score 100",ALLOW,100,PASS,0.0312,1
+1,"Genuine scan, in order, seal closed",3,"ALLOW, score 100",ALLOW,100,PASS,0.0254,1
+1,"Genuine scan, in order, seal closed",4,"ALLOW, score 100",ALLOW,100,PASS,0.0237,1
+1,"Genuine scan, in order, seal closed",5,"ALLOW, score 100",ALLOW,100,PASS,0.0245,1
+1,"Genuine scan, in order, seal closed",6,"ALLOW, score 100",ALLOW,100,PASS,0.0224,1
+1,"Genuine scan, in order, seal closed",7,"ALLOW, score 100",ALLOW,100,PASS,0.0215,1
+1,"Genuine scan, in order, seal closed",8,"ALLOW, score 100",ALLOW,100,PASS,0.0183,1
+1,"Genuine scan, in order, seal closed",9,"ALLOW, score 100",ALLOW,100,PASS,0.0199,1
+1,"Genuine scan, in order, seal closed",10,"ALLOW, score 100",ALLOW,100,PASS,0.0206,1
+1,"Genuine scan, in order, seal closed",11,"ALLOW, score 100",ALLOW,100,PASS,0.0198,1
+1,"Genuine scan, in order, seal closed",12,"ALLOW, score 100",ALLOW,100,PASS,0.0269,1
+1,"Genuine scan, in order, seal closed",13,"ALLOW, score 100",ALLOW,100,PASS,0.0237,1
+1,"Genuine scan, in order, seal closed",14,"ALLOW, score 100",ALLOW,100,PASS,0.0246,1
+1,"Genuine scan, in order, seal closed",15,"ALLOW, score 100",ALLOW,100,PASS,0.0247,1
+1,"Genuine scan, in order, seal closed",16,"ALLOW, score 100",ALLOW,100,PASS,0.0257,1
+1,"Genuine scan, in order, seal closed",17,"ALLOW, score 100",ALLOW,100,PASS,0.0253,1
+1,"Genuine scan, in order, seal closed",18,"ALLOW, score 100",ALLOW,100,PASS,0.0469,1
+1,"Genuine scan, in order, seal closed",19,"ALLOW, score 100",ALLOW,100,PASS,0.045,1
+1,"Genuine scan, in order, seal closed",20,"ALLOW, score 100",ALLOW,100,PASS,0.0285,1
+2,Package tampering (seal open),1,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.037,1
+2,Package tampering (seal open),2,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0316,1
+2,Package tampering (seal open),3,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0358,1
+2,Package tampering (seal open),4,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0286,1
+2,Package tampering (seal open),5,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0303,1
+2,Package tampering (seal open),6,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0325,1
+2,Package tampering (seal open),7,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0389,1
+2,Package tampering (seal open),8,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0535,1
+2,Package tampering (seal open),9,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0394,1
+2,Package tampering (seal open),10,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0352,1
+2,Package tampering (seal open),11,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0322,1
+2,Package tampering (seal open),12,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0275,1
+2,Package tampering (seal open),13,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0259,1
+2,Package tampering (seal open),14,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0306,1
+2,Package tampering (seal open),15,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0284,1
+2,Package tampering (seal open),16,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.034,1
+2,Package tampering (seal open),17,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0407,1
+2,Package tampering (seal open),18,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0339,1
+2,Package tampering (seal open),19,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0357,1
+2,Package tampering (seal open),20,"QUARANTINE, score 20",QUARANTINE,20,PASS,0.0405,1
+3,Route manipulation (skip / backtrack),1,"FLAG, score 65 (skip)",FLAG,65,PASS,0.0266,2
+3,Route manipulation (skip / backtrack),2,"FLAG, score 75 (backtrack)",FLAG,75,PASS,0.0233,3
+3,Route manipulation (skip / backtrack),3,"FLAG, score 65 (skip)",FLAG,65,PASS,0.021,2
+3,Route manipulation (skip / backtrack),4,"FLAG, score 75 (backtrack)",FLAG,75,PASS,0.023,3
+3,Route manipulation (skip / backtrack),5,"FLAG, score 65 (skip)",FLAG,65,PASS,0.0197,2
+3,Route manipulation (skip / backtrack),6,"FLAG, score 75 (backtrack)",FLAG,75,PASS,0.0234,3
+3,Route manipulation (skip / backtrack),7,"FLAG, score 65 (skip)",FLAG,65,PASS,0.0207,2
+3,Route manipulation (skip / backtrack),8,"FLAG, score 75 (backtrack)",FLAG,75,PASS,0.0261,3
+3,Route manipulation (skip / backtrack),9,"FLAG, score 65 (skip)",FLAG,65,PASS,0.0197,2
+3,Route manipulation (skip / backtrack),10,"FLAG, score 75 (backtrack)",FLAG,75,PASS,0.0265,3
+3,Route manipulation (skip / backtrack),11,"FLAG, score 65 (skip)",FLAG,65,PASS,0.0249,2
+3,Route manipulation (skip / backtrack),12,"FLAG, score 75 (backtrack)",FLAG,75,PASS,0.0205,3
+3,Route manipulation (skip / backtrack),13,"FLAG, score 65 (skip)",FLAG,65,PASS,0.0222,2
+3,Route manipulation (skip / backtrack),14,"FLAG, score 75 (backtrack)",FLAG,75,PASS,0.0219,3
+3,Route manipulation (skip / backtrack),15,"FLAG, score 65 (skip)",FLAG,65,PASS,0.0299,2
+3,Route manipulation (skip / backtrack),16,"FLAG, score 75 (backtrack)",FLAG,75,PASS,0.0299,3
+3,Route manipulation (skip / backtrack),17,"FLAG, score 65 (skip)",FLAG,65,PASS,0.0334,2
+3,Route manipulation (skip / backtrack),18,"FLAG, score 75 (backtrack)",FLAG,75,PASS,0.0172,3
+3,Route manipulation (skip / backtrack),19,"FLAG, score 65 (skip)",FLAG,65,PASS,0.0194,2
+3,Route manipulation (skip / backtrack),20,"FLAG, score 75 (backtrack)",FLAG,75,PASS,0.018,3
+4,RFID cloning (same UID at two checkpoints),1,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0226,2
+4,RFID cloning (same UID at two checkpoints),2,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0253,2
+4,RFID cloning (same UID at two checkpoints),3,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0352,2
+4,RFID cloning (same UID at two checkpoints),4,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0221,2
+4,RFID cloning (same UID at two checkpoints),5,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0248,2
+4,RFID cloning (same UID at two checkpoints),6,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0224,2
+4,RFID cloning (same UID at two checkpoints),7,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0196,2
+4,RFID cloning (same UID at two checkpoints),8,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0251,2
+4,RFID cloning (same UID at two checkpoints),9,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0252,2
+4,RFID cloning (same UID at two checkpoints),10,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0277,2
+4,RFID cloning (same UID at two checkpoints),11,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0205,2
+4,RFID cloning (same UID at two checkpoints),12,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0245,2
+4,RFID cloning (same UID at two checkpoints),13,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0234,2
+4,RFID cloning (same UID at two checkpoints),14,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0219,2
+4,RFID cloning (same UID at two checkpoints),15,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0288,2
+4,RFID cloning (same UID at two checkpoints),16,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0255,2
+4,RFID cloning (same UID at two checkpoints),17,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0175,2
+4,RFID cloning (same UID at two checkpoints),18,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0237,2
+4,RFID cloning (same UID at two checkpoints),19,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0262,2
+4,RFID cloning (same UID at two checkpoints),20,"QUARANTINE, score 30 (speed -30 + clone -40)",QUARANTINE,30,PASS,0.0218,2
+5,Suspicious travel speed,1,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.0258,2
+5,Suspicious travel speed,2,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.0202,2
+5,Suspicious travel speed,3,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.0193,2
+5,Suspicious travel speed,4,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.0197,2
+5,Suspicious travel speed,5,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.0259,2
+5,Suspicious travel speed,6,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.0178,2
+5,Suspicious travel speed,7,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.0201,2
+5,Suspicious travel speed,8,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.0307,2
+5,Suspicious travel speed,9,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.0283,2
+5,Suspicious travel speed,10,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.0321,2
+5,Suspicious travel speed,11,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.0264,2
+5,Suspicious travel speed,12,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.0192,2
+5,Suspicious travel speed,13,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.022,2
+5,Suspicious travel speed,14,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.024,2
+5,Suspicious travel speed,15,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.0229,2
+5,Suspicious travel speed,16,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.0198,2
+5,Suspicious travel speed,17,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.027,2
+5,Suspicious travel speed,18,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.0228,2
+5,Suspicious travel speed,19,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.0246,2
+5,Suspicious travel speed,20,"FLAG, score 70 (speed -30 only)",FLAG,70,PASS,0.0235,2
+6,Silent duress PIN,1,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0336,1
+6,Silent duress PIN,2,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0413,1
+6,Silent duress PIN,3,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0327,1
+6,Silent duress PIN,4,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0285,1
+6,Silent duress PIN,5,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0268,1
+6,Silent duress PIN,6,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0326,1
+6,Silent duress PIN,7,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0372,1
+6,Silent duress PIN,8,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0335,1
+6,Silent duress PIN,9,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0331,1
+6,Silent duress PIN,10,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0354,1
+6,Silent duress PIN,11,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0302,1
+6,Silent duress PIN,12,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0306,1
+6,Silent duress PIN,13,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0396,1
+6,Silent duress PIN,14,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0396,1
+6,Silent duress PIN,15,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0319,1
+6,Silent duress PIN,16,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0363,1
+6,Silent duress PIN,17,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0417,1
+6,Silent duress PIN,18,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0336,1
+6,Silent duress PIN,19,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0314,1
+6,Silent duress PIN,20,ALLOW on screen + SILENT_DURESS alert in log,ALLOW,100,PASS,0.0273,1

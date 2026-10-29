@@ -1,0 +1,1 @@
+trial,condition,checkpoint,seal_state_ground_truth,rfid_uid,hardware_presented_at_utc,oled_tampered_observed,serial_line_observed,http_status,backend_decision,stored_scan_id,serial_rx_to_reply_seconds,physical_presentation_to_persist_seconds,notes

@@ -1,0 +1,9 @@
+probe,assumption,decision,score,next_checkpoint,is_duress,display_status,violations
+unknown_uid_first_seen_at_C01,Client-submitted new UID may auto-enroll at C01,ALLOW,100,C02,False,ALLOW,[]
+no_employee_credentials,Employee credentials are optional at API level,ALLOW,100,C02,False,ALLOW,[]
+wrong_employee_pin,"Wrong PIN is scored, not categorically rejected",ALLOW,85,C02,False,ALLOW,"[""INVALID_EMPLOYEE_PIN: Employee PIN authentication failed.""]"
+employee_assigned_C01_used_at_C02,Employee assigned checkpoint is not enforced by engine,ALLOW,100,C03,False,ALLOW,[]
+uid_reuse_after_10_second_window,A copied UID used after enough time is not detected by this heuristic,ALLOW,100,C03,False,ALLOW,[]
+false_client_tamper_bit,A compromised client can report tamper=False even if a real circuit is broken; software-only observation,ALLOW,100,C02,False,ALLOW,[]
+tamper_quarantine_state,Check whether rejected scan still advances product expected checkpoint,QUARANTINE,20,C02,False,QUARANTINE,"[""PACKAGE_TAMPERED: Physical conductive seal is broken/opened.""]"
+duress_visible_in_raw_response,Check whether caller receives duress flag/violation despite masked display message,ALLOW,100,C02,True,ALLOW (VERIFIED),"[""SILENT_DURESS: Employee entered emergency Duress PIN.""]"

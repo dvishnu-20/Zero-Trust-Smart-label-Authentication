@@ -1,0 +1,47 @@
+{
+  "protocol": "Freshly prepared registered UIDs; same input trials for both policies",
+  "warning": "Synthetic, hand-constructed cases; not deployment detection accuracy",
+  "n": 120,
+  "matches": 120,
+  "time_boundary": "evaluate_zero_trust_scan and database work only",
+  "seconds": {
+    "mean": 0.027466465,
+    "median": 0.02747305,
+    "p95": 0.0448261,
+    "max": 0.0961746
+  },
+  "metrics": {
+    "full_policy": {
+      "tp": 100,
+      "tn": 20,
+      "fp": 0,
+      "fn": 0,
+      "scripted_case_detection_rate": 1.0,
+      "scripted_case_detection_ci95_wilson": [
+        0.96301,
+        1.0
+      ],
+      "scripted_normal_specificity": 1.0,
+      "scripted_normal_specificity_ci95_wilson": [
+        0.83887,
+        1.0
+      ]
+    },
+    "registered_uid_only": {
+      "tp": 0,
+      "tn": 20,
+      "fp": 0,
+      "fn": 100,
+      "scripted_case_detection_rate": 0.0,
+      "scripted_case_detection_ci95_wilson": [
+        0.0,
+        0.03699
+      ],
+      "scripted_normal_specificity": 1.0,
+      "scripted_normal_specificity_ci95_wilson": [
+        0.83887,
+        1.0
+      ]
+    }
+  }
+}
