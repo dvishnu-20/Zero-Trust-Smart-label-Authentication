@@ -35,3 +35,4 @@ if __name__ == "__main__":
             print("No quarantine-release transition observed in this run")
     finally:
         db.close()
+
